@@ -1,0 +1,152 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+<!-- <h1>Player Evaluation</h1> -->
+
+
+<form action="{% url 'playerevals:vote' rid=rid_str %}" method="post">
+{% csrf_token %}
+
+<div class="card">
+
+<h1><span>Player to review:</span> {{next_player}}</h1>
+
+<div class="colorstrip"></div>
+<div>
+    <table>
+        <tr>
+            {% for p in status %}
+            <th><input type="checkbox" disabled="true" name="c{{p.0}}" {% if p.1 %}checked{% endif %}><br>
+                <label for="c{{p.0}}">{{ p.0 }}</label>
+            </th>    
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+</div>
+
+<div class="card">
+    <h3>Rate Skills</h3>
+    <p>
+        <tr>
+            <th>1: Lacking</th></br>
+            <th>2: Needs Improvement</th></br>
+            <th>3: Average</th></br>
+            <th>4: Better than average</th></br>
+            <th>5: Mastery</th></br>
+            <th>Last column contains Stefano's scores, provided as reference.</th></br>
+        </tr>
+    </p>
+    <div class="colorstrip"></div>
+
+
+    <input type='hidden' name="next_player" value="{{ next_player }}" />
+    <table  width="700" height="150">
+        <tr>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th><img src="{% static 'playerevals/ste1.png' %}" alt="Stefano"  width="50" height="50" class="img-circular"></th>
+        </tr>
+        </br>
+        <!-- <tr><td width="100px"></td><td width="100px"><td width="100px"><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td></tr> -->
+        {% for q in questions %}
+        <tr>
+            <th class="tooltip">{{q.name}}<span class="tooltiptext">{{q.description}}</span></th>
+            <th><input type="radio" class="radio1" name="c{{q.slug}}" value="1"><label for="c{{q.slug}}"></label></th>
+            <th><input type="radio" class="radio1" name="c{{q.slug}}" value="2"><label for="c{{q.slug}}"></label></th>
+            <th><input type="radio" class="radio1" name="c{{q.slug}}" value="3" checked><label for="c{{q.slug}}"></label></th>
+            <th><input type="radio" class="radio1" name="c{{q.slug}}" value="4"><label for="c{{q.slug}}"></label></th>
+            <th><input type="radio" class="radio1" name="c{{q.slug}}" value="5"><label for="c{{q.slug}}"></label></th>
+            <th>({{q.ref_value}})</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</br>
+</br>
+
+
+<div class="card">
+    <h3>What is the ideal position for this player?</h3>
+    <table id="positions" background="{% static 'playerevals/field.jpg' %}" width="490" height="500">
+        <tr>
+            <td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td>
+        </tr>
+        <!-- Sriker -->
+        <tr>
+            <td width="100px"></td>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p11" value="11"></br><label for="p11">Striker</label></td>
+            <td width="100px"></td>
+            <td width="100px"></td>
+        </tr>
+        <!-- AMF -->
+        <tr>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p10" value="10"></br><label for="p10">Attacking MF</label></td>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p9" value="9"></br><label for="p9">Second Striker</label></td>
+            <td width="100px"></td>
+        </tr>
+        <!-- MF -->
+        <tr>
+            <td width="100px"><input type="checkbox" name="p7" value="7"></br><label for="p7">Left Wing</label></td>
+            <td width="100px"><input type="checkbox" name="p8" value="8"></br><label for="p8">Intercepting MF</label></td>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p6" value="6"></br><label for="p6">Centre MF</label></td>
+            <td width="100px"><input type="checkbox" name="p7" value="7"></br><label for="p7">Right Wing</label></td>
+        </tr>
+        <!-- Def MF -->
+        <tr>
+            <td width="100px"></td>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p5" value="5"></br><label for="p5">Defensive MF</label></td>
+            <td width="100px"></td>
+            <td width="100px"></td>
+        </tr>
+        <!-- 4 Defenders -->
+        <tr>
+            <td width="100px"><input type="checkbox" name="p2" value="2"></br><label for="p2">Left Wing-Back</label></td>
+            <td width="100px"><input type="checkbox" name="p3" value="3"></br><label for="p3">Sweeper</label></td>
+            <td width="100px"></td>
+            <td width="100px"><input type="checkbox" name="p4" value="4"></br><label for="p4">Center Back</label></td>
+            <td width="100px"><input type="checkbox" name="p2" value="2"></br><label for="p2">Right Wing-Back</label></td>
+        </tr>
+        <tr>
+            <td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td>
+        </tr>     
+    </table>
+</div>
+
+
+<div class="card">
+    <h3>What could this player improve upon?</h3>
+    <label for="feedback"></label></br>
+    <textarea id="feedback" name="feedback" rows="8" cols="60"></textarea>
+</div>
+
+<div class="card">
+
+    <h3>(optional) What would you nominate this player for?</h3>
+    <tr>
+        <td width="100px"><input type="checkbox" name="n1" value="1"><label for="n1">Year MVP</label></td></br>
+        <td width="100px"><input type="checkbox" name="n2" value="2"><label for="n2">Rookie of the Year</label></td></br>
+        <td width="100px"><input type="checkbox" name="n3" value="3"><label for="n3">Most Improved Player</label></td></br>
+        <td width="100px"><input type="checkbox" name="n4" value="4"><label for="n4">Most Athletic Player</label></td></br>
+        <td width="100px"><input type="checkbox" name="n5" value="5"><label for="n5">Best Reverse Tempo Practitioner</label></td></br>
+        <td width="100px"><input type="checkbox" name="n6" value="6"><label for="n6">Most Late for Training</label></td></br>
+        <td width="100px"><input type="checkbox" name="n7" value="7"><label for="n7">Participation Award</label></td></br>
+    </tr>
+</div>
+
+
+<div class="text-center">
+    <!-- <div class="vertical-center"> -->
+        <input type="submit" class="smt" value="Submit">
+    <!-- </div> -->
+</div>
+</form>

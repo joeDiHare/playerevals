@@ -1,0 +1,29 @@
+description,skill,ref
+defines a player's ability to spot open space and move into good positions that offer an attacking advantage.,Attacking Position,1
+Awareness is a Player Attribute in FIFA Mobile that determines the ability of a player in terms of being aware of what is going on all around the pitch.,Awareness,2
+Composure is a Player Attribute in FIFA that determines a player's the state or feeling of being calm and controlling their frustration in matches frustration.,Composure,3
+Interceptions is a Player Attribute in FIFA that determines a player's capability to intercept the ball - to catch the opposing team's passes.,Interceptions,4
+Marking is a Player Attribute that determines a player's capability to mark an opposition player or players to prevent them from taking control of the ball.,Marking,4
+Positioning (POS) is a Player Attribute in FIFA that determines that how well a player is able to perform the positioning on the field as a player or on the goal line as a goalkeeper.,Positioning,1
+"Vision is a Player Attribute in FIFA that determines a player's mental awareness about his teammates' positioning, for passing the ball to them.",Vision,1
+Acceleration is a Player Attribute in FIFA that determines the increment of a player's running speed (sprint speed) on the pitch. The acceleration rate specifies how fast a player can reach their maximum sprint speed.,Acceleration,1
+Agility is a Player Attribute in FIFA that determines how quick and graceful a player is able to control the ball. Agility depends on both mental and physical skills of the player.,Agility,1
+"Balance is a Player Attribute in FIFA that determines the even distribution of enabling a player to remain upright and steady when running, carrying and controlling the ball.",Balance,1
+Pace (PAC) is a Player Attribute in FIFA that determines a player's speed in walking and running.,Pace,1
+Reactions (REA) is a Player Attribute in FIFA that determines the acting speed of a player in response to the situations happening around them.,Reactions,1
+Sprint Speed is a Player Attribute in FIFA that determines the speed rate of a player's sprinting (running).,Sprint Speed,1
+Stamina (STA) is a Player Attribute in FIFA that determines a player's ability to sustain prolonged physical or mental effort in a match.,Stamina,1
+Strength is a Player Attribute in FIFA that determines the quality or state of being physically strong of a player.,Strength,1
+Ball Control is a Player Attribute in FIFA that determines the ability of a player to control the ball on the pitch.,Ball Control,1
+Defending (DEF) is a Player Attribute in FIFA that determines a player's ability to defend.,Defending,1
+Dribbling (DRI) is a Player Attribute in FIFA that determines a player's ability to carry the ball and past an opponent while being in control.,Dribbling,1
+Finishing is a Player Attribute in FIFA that determines the ability of a player to score (ability for finishing - How well they can finish a opportunity with a score).,Finishing,1
+Long Passing is a Player Attribute that determines a player's accuracy for the long and aerial passes.,Long Passing,1
+Short Passing is a Player Attribute in FIFA that determines a player's accuracy for the short passes.,Short Passing,1
+Standing Tackle is a Player Attribute that determines the ability of performing standing tackle of a player.,Standing Tackle,1
+Communication during game,Communication during game,1
+Recovery,Recovery,1
+tendency of closing down space,tendency of closing down space,1
+reversed game tempo,reversed game tempo,1
+ball shielding,ball shielding,1
+supportive to teammates,supportive to teammates,1
