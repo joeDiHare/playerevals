@@ -90,3 +90,18 @@ class CompletedView(generic.ListView):
         context['tot'] = len(rev.assigned_players)
         context['reviewer'] = self.kwargs['reviewer']
         return context
+
+
+class IndexView(generic.ListView):
+    model = Reviewer
+    template_name = 'playerevals/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['status'] = {}
+        for rev in Reviewer.objects.all():
+            _tmp = []
+            for p in rev.assigned_players.split('|'):
+                _tmp.append(p in rev.completed_reviews)
+            context['status'][rev.name] = _tmp
+        return context

@@ -2,4 +2,22 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
 
-Nothing to see.
+<div class="card">
+
+    <h1>Progress</h1>
+    <div class="colorstrip"></div>
+</br>
+    <div>
+        <table>
+            {% for key, values in status.items %}
+            <tr>
+                <td width=100px>{{key}}</td>
+                {% for v in values %}
+                <th width=100px><input type=checkbox onclick="return false;" onkeydown="return false;" {% if v %}checked{% endif %}/><br>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
