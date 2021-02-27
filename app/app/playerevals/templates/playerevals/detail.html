@@ -11,7 +11,7 @@
 <h1><span>Player to review:</span> {{next_player}}</h1>
 
 <div class="colorstrip"></div>
-<div>
+<div align="right">
     <table>
         <tr>
             {% for p in status %}
@@ -33,7 +33,7 @@
             <th>3: Average</th></br>
             <th>4: Better than average</th></br>
             <th>5: Mastery</th></br>
-            <th>Last column contains Stefano's scores, provided as reference.</th></br>
+            <th>Last column contains how the other Captains scored Stefano, provided here as reference.</th></br>
         </tr>
     </p>
     <div class="colorstrip"></div>
@@ -60,7 +60,7 @@
             <th><input type="radio" class="radio1" name="c{{q.slug}}" value="3" checked><label for="c{{q.slug}}"></label></th>
             <th><input type="radio" class="radio1" name="c{{q.slug}}" value="4"><label for="c{{q.slug}}"></label></th>
             <th><input type="radio" class="radio1" name="c{{q.slug}}" value="5"><label for="c{{q.slug}}"></label></th>
-            <th>({{q.ref_value}})</th>
+            <th>{% ifequal next_player "Stefano" %}?{% else %}({{q.ref_value}}){% endifequal %}</th>
         </tr>
         {% endfor %}
     </table>

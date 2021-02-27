@@ -33,7 +33,7 @@ class Reviewer(models.Model):
 class Skills(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     # value = models.IntegerField(default=3)
     ref_value = models.FloatField(default=0.0)
     def __str__(self):
