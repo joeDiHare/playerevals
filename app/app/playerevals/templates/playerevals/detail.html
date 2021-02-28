@@ -1,5 +1,12 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+<head>
+    <meta name="robots" content="noindex" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <!-- <link rel="manifest" href="{% static 'site.webmanifest"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+</head>
 <title>Player Evaluation</title>
 
 
@@ -48,7 +55,7 @@
             <th>3</th>
             <th>4</th>
             <th>5</th>
-            <th><img src="{% static 'playerevals/ste1.png' %}" alt="Stefano"  width="70" height="60" class="img-circular"></th>
+            <th><img src="{% static 'playerevals/ste.png' %}" alt="Stefano"  width="70" height="60" class="img-circular"></th>
         </tr>
         </br>
         <!-- <tr><td width="100px"></td><td width="100px"><td width="100px"><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td></tr> -->
@@ -72,81 +79,92 @@
 
 <div class="card">
     <h3>What is the ideal position for this player?</h3>
-    <table id="positions" background="{% static 'playerevals/field.jpg' %}" width="490" height="500">
+    <div align="center">
+    <table id="positions" background="{% static 'playerevals/field.jpg' %}" width="500" height="500">
         <tr>
-            <td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td>
+            <td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td>
         </tr>
         <!-- Sriker -->
         <tr>
-            <td width="100px"></td>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p11" value="11"></br><label for="p11">Striker</label></td>
-            <td width="100px"></td>
-            <td width="100px"></td>
+            <td class="tda"></td>
+            <td class="tda"></td>
+            <td class="tda"><input type="checkbox" name="p11" value="11"></br><label for="p11">Striker</label></td>
+            <td class="tda"></td>
+            <td class="tda"></td>
         </tr>
         <!-- AMF -->
         <tr>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p10" value="10"></br><label for="p10">Attacking MF</label></td>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p9" value="9"></br><label for="p9">Second Striker</label></td>
-            <td width="100px"></td>
+            <td class="tda"></td>
+            <td class="tda"></br><input type="checkbox" name="p10" value="10"></br><label for="p10">Attacking MF</label></td>
+            <td class="tda"></td>
+            <td class="tda"><input type="checkbox" name="p9" value="9"></br><label for="p9">Second Striker</label></td>
+            <td class="tda"></td>
         </tr>
         <!-- MF -->
         <tr>
-            <td width="100px"><input type="checkbox" name="p7" value="7"></br><label for="p7">Left Wing</label></td>
-            <td width="100px"><input type="checkbox" name="p8" value="8"></br><label for="p8">Intercepting MF</label></td>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p6" value="6"></br><label for="p6">Centre MF</label></td>
-            <td width="100px"><input type="checkbox" name="p7" value="7"></br><label for="p7">Right Wing</label></td>
+            <td class="tda"><input type="checkbox" name="p7" value="7"></br><label for="p7">Left Wing</label></td>
+            <td class="tda"></br></br><input type="checkbox" name="p8" value="8"></br><label for="p8">Intercepting MF</label></td>
+            <td class="tda"></td>
+            <td class="tda"></br><input type="checkbox" name="p6" value="6"></br><label for="p6">Centre MF</label></td>
+            <td class="tda"><input type="checkbox" name="p7" value="7"></br><label for="p7">Right Wing</label></td>
         </tr>
         <!-- Def MF -->
         <tr>
-            <td width="100px"></td>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p5" value="5"></br><label for="p5">Defensive MF</label></td>
-            <td width="100px"></td>
-            <td width="100px"></td>
+            <td class="tda"></td>
+            <td class="tda"></td>
+            <td class="tda"><input type="checkbox" name="p5" value="5"></br><label for="p5">Defensive MF</label></td>
+            <td class="tda"></td>
+            <td class="tda"></td>
         </tr>
         <!-- 4 Defenders -->
         <tr>
-            <td width="100px"><input type="checkbox" name="p2" value="2"></br><label for="p2">Left Wing-Back</label></td>
-            <td width="100px"><input type="checkbox" name="p3" value="3"></br><label for="p3">Sweeper</label></td>
-            <td width="100px"></td>
-            <td width="100px"><input type="checkbox" name="p4" value="4"></br><label for="p4">Center Back</label></td>
-            <td width="100px"><input type="checkbox" name="p2" value="2"></br><label for="p2">Right Wing-Back</label></td>
+            <td class="tda"><input type="checkbox" name="p2" value="2"></br><label for="p2">Left Wing-Back</label></td>
+            <td class="tda"><input type="checkbox" name="p3" value="3"></br><label for="p3">Sweeper</label></td>
+            <td class="tda"></td>
+            <td class="tda"><input type="checkbox" name="p4" value="4"></br><label for="p4">Center Back</label></td>
+            <td class="tda"><input type="checkbox" name="p2" value="2"></br><label for="p2">Right Wing-Back</label></td>
         </tr>
-        <tr>
-            <td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td><td width="100px"></td>
-        </tr>     
+        <tr><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td></tr>
+        <tr><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td></tr>
     </table>
+    </div>
 </div>
 
 
 <div class="card">
     <h3>What could this player improve upon?</h3>
+    <div align="center">
     <label for="feedback"></label></br>
-    <textarea id="feedback" name="feedback" rows="8" cols="60"></textarea>
+    <textarea id="feedback" name="feedback" rows="10" style="width:90%;"></textarea>
+    </div>
 </div>
 
 <div class="card">
 
-    <h3>(optional) What would you nominate this player for?</h3>
-    <tr>
-        <td width="100px"><input type="checkbox" name="n1" value="1"><label for="n1">Year MVP</label></td></br>
-        <td width="100px"><input type="checkbox" name="n2" value="2"><label for="n2">Rookie of the Year</label></td></br>
-        <td width="100px"><input type="checkbox" name="n3" value="3"><label for="n3">Most Improved Player</label></td></br>
-        <td width="100px"><input type="checkbox" name="n4" value="4"><label for="n4">Most Athletic Player</label></td></br>
-        <td width="100px"><input type="checkbox" name="n5" value="5"><label for="n5">Best Reverse Tempo Practitioner</label></td></br>
-        <td width="100px"><input type="checkbox" name="n6" value="6"><label for="n6">Most Late for Training</label></td></br>
-        <td width="100px"><input type="checkbox" name="n7" value="7"><label for="n7">Participation Award</label></td></br>
-    </tr>
+    <h3>What would you nominate this player for?</h3>
+    <div class="row">
+        <div class="column">
+            <tr>
+                <td width="100px"><input type="checkbox" name="n1" value="1"><label for="n1">Year MVP</label></td></br>
+                <td width="100px"><input type="checkbox" name="n2" value="2"><label for="n2">Rookie of the Year</label></td></br>
+                <td width="100px"><input type="checkbox" name="n3" value="3"><label for="n3">Most Improved Player</label></td></br>
+                <td width="100px"><input type="checkbox" name="n4" value="4"><label for="n4">Most Athletic Player</label></td></br>
+            </tr>
+        </div>
+        <div class="column">
+            <tr>
+                <td width="100px"><input type="checkbox" name="n7" value="7"><label for="n7">Most Aggressive Player</label></td></br>
+                <td width="100px"><input type="checkbox" name="n5" value="5"><label for="n5">Best Reverse Tempo Practitioner</label></td></br>
+                <td width="100px"><input type="checkbox" name="n6" value="6"><label for="n6">Most Late for Training</label></td></br>
+                <td width="100px"><input type="checkbox" name="n7" value="7"><label for="n7">Participation Award</label></td></br>
+            </tr>
+        </div>
+        </div>
+    </div>
 </div>
 
 
 <div class="text-center">
-    <!-- <div class="vertical-center"> -->
-        <input type="submit" class="smt" value="Submit">
-    <!-- </div> -->
+    <input type="submit" class="smt" value="Submit">
 </div>
 </form>
