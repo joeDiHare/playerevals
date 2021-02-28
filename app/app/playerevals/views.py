@@ -1,7 +1,7 @@
 import json
 
+from django.core import serializers
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 
@@ -14,11 +14,14 @@ class DetailView(generic.ListView):
 
     def get(self, *args, **kwargs):
 
-        rev = Reviewer.objects.get(code=self.kwargs['rid'])
+        rev = Reviewer.objects.filter(code=self.kwargs['rid'])
+        if not rev:
+            return HttpResponseRedirect(reverse('playerevals:lost'))
+
+        rev = rev.first()
         if len(rev.remaining()) == 0:
             return HttpResponseRedirect(
-                reverse('playerevals:completed',
-                        args=(rev.name,)))
+                reverse('playerevals:done', args=(rev.name,)))
 
         return super().get(*args, **kwargs)
 
@@ -26,9 +29,10 @@ class DetailView(generic.ListView):
         context = super().get_context_data(**kwargs)
         rid = self.kwargs['rid']
         rev = Reviewer.objects.get(code=rid)
-        
+
         context['reviewer'] = rev
-        context['status'] = [(p[0], p in rev.completed_reviews) for p in rev.assigned_players.split('|')]
+        context['status'] = [(p[0], p in rev.completed_reviews)
+                             for p in rev.assigned_players.split('|')]
         context['next_player'] = rev.next_player()
         context['rem'] = len(rev.remaining())
         context['questions'] = Skills.objects.all()
@@ -77,12 +81,16 @@ def vote(request, rid):
     rev.add_review(player_name)
     rev.save()
 
+    # Write local, as backup
+    with open(f"{rev.code}_{rev.name}.csv", 'w') as outfile:
+        json.dump(data, outfile)
+
     return HttpResponseRedirect(reverse('playerevals:detail', args=(rid,)))
 
 
-class CompletedView(generic.ListView):
+class DoneView(generic.ListView):
     model = Reviewer
-    template_name = 'playerevals/completed.html'
+    template_name = 'playerevals/done.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -90,6 +98,10 @@ class CompletedView(generic.ListView):
         context['tot'] = len(rev.assigned_players)
         context['reviewer'] = self.kwargs['reviewer']
         return context
+
+
+class LostView(generic.TemplateView):
+    template_name='playerevals/lost.html'
 
 
 class IndexView(generic.ListView):
@@ -105,3 +117,17 @@ class IndexView(generic.ListView):
                 _tmp.append(p in rev.completed_reviews)
             context['status'][rev.name] = _tmp
         return context
+
+
+def dumpdb(request):
+    # Flush Review model into json HttpResponse
+    reviews = Review.objects.all()
+    d = {}
+    for k, rev in enumerate(reviews):
+        d[k] = rev.data
+    json_str = json.dumps(d)
+
+    response = HttpResponse(json_str, content_type='application/json')
+    response['Content-Disposition'] = 'attachment; filename=export.json'
+
+    return response
