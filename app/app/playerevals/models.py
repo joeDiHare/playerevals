@@ -34,14 +34,13 @@ class Reviewer(models.Model):
         self.completed_reviews = '|'.join(cr)
 
     def __str__(self):
-        return f"{self.id}: {self.name}"
+        return f"{self.id}: {self.name} {self.code}"
 
 
 class Skills(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    # value = models.IntegerField(default=3)
     ref_value = models.FloatField(default=0.0)
 
     def __str__(self):
@@ -50,6 +49,31 @@ class Skills(models.Model):
 
 class Review(models.Model):
     ts = models.DateTimeField(auto_now_add=True)
-    data = models.CharField(max_length=1000)
+    data = models.TextField()
     reviewer = models.ForeignKey(Reviewer, on_delete=models.CASCADE)
     player = models.ForeignKey(Players, on_delete=models.CASCADE)
+
+
+POSITIONS = {
+    "p11": "Striker",
+    "p10": "Attacking MF",
+    "p9": "Second Striker",
+    "p8": "Intercepting MF",
+    "p7": "Right/Left Wing",
+    "p6": "Centre MF",
+    "p5": "Defensive MF",
+    "p4": "Center Back",
+    "p3": "Sweeper",
+    "p2": "Right/Left Wing-Back",
+}
+
+NOMINATIONS = {
+    "n1": "Year MVP",
+    "n2": "Rookie of the Year",
+    "n3": "Most Improved Player",
+    "n4": "Most Athletic Player",
+    "n7": "Most Aggressive Player",
+    "n5": "Best Reverse Tempo Practitioner",
+    "n6": "Most Late for Training",
+    "n7": "Participation Award",
+}

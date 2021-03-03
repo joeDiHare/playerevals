@@ -3,7 +3,6 @@ import pandas as pd
 
 from playerevals.models import *
 
-POSITIONS = ["[2] Right/Left Wing-Back","[3] Centre Back","[4] Sweeper","[5] Defensive midfield","[6] Centre midfield","[7] Winger","[8] Wide midfield","[9] Second striker","[10] Attacking midfield","[11] Forward / Striker"]
 
 class Command(BaseCommand):
     help = __doc__
@@ -41,11 +40,3 @@ class Command(BaseCommand):
                 continue
             obj.save()
             self.stdout.write(self.style.SUCCESS(f'Created Skill-Question {row["skill"]}'))
-        
-        # for r in RATINGS:
-        #     obj, created = Skills.objects.get_or_create(name=s)
-        #     if created:
-        #         self.stdout.write(self.style.SUCCESS(f'Created rating {r}'))
-
-        
-

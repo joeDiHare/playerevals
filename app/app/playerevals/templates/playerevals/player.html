@@ -1,0 +1,142 @@
+{% load static %}
+<head>
+    <meta name="robots" content="noindex" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+</head>
+<title>Player Evaluation</title>
+
+
+<div class="card">
+
+<h1>{{player}}</h1>
+<h5>Player Card</h5>
+
+<div class="colorstrip"></div>
+<div align="right">
+    <table>
+        <tr>
+            {% for p in status %}
+            <th><input type="checkbox" name="c{{p.0}}" onclick="return false;" onkeydown="return false;" {% if p.1 %}checked{% endif %}/><br>
+                <label for="c{{p.0}}">{{ p.0 }}</label>
+            </th>    
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+</div>
+
+<div class="card">
+    <p>
+        <tr>
+            <th> 0 - 20%: Lacking</th></br>
+            <th>20 - 40%: Needs Improvement</th></br>
+            <th>40 - 60%: Average</th></br>
+            <th>60 - 80%: Better than average</th></br>
+            <th>80 -100%: Mastery</th></br>
+            <th>Last column contains the averages for all players.</th></br>
+        </tr>
+    </p>
+    <div class="colorstrip"></div>
+
+    <table  width="700" height="150">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Average</th>
+        </tr>
+        </br>
+        {% for v in skills %}
+        <tr>
+            <th class="tooltip">{{v.0}}<span class="tooltiptext">{{v.1}}</span></th>
+            {% if v.2 <= v.3|add:"-10" %}<th><span class='icon-down'>{{v.2}}</span></th>{% endif %}
+            {% if v.2 >= v.3|add:"10" %}<th><span class='icon-up'>{{v.2}}</span></th>{% endif %}
+            {% if v.3|add:"-10" < v.2 and v.2 < v.3|add:10 %}<th><span class='icon-same'>{{v.2}}</span></th>{% endif %}
+            <th class="slidecontainer"><input type="range" min="1" max="100" value="{{v.2}}" class="slider" disabled></th>
+            <th>({{v.3}} ± {{v.4}})</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</br>
+</br>
+
+
+<div class="card">
+    <h3>Your peers see you best as:</h3>
+    <div align="center">
+    <table id="positions" background="{% static 'playerevals/field.jpg' %}" width="500" height="500">
+        <tr>
+            <td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td>
+        </tr>
+        <!-- Sriker -->
+        <tr>
+            <td class="tda"></td>
+            <td class="tda"></td>
+            <td class="tda">{% if "p11" in positions %}<input type="checkbox" checked> {% endif %}</br>Striker</td>
+            <td class="tda"></td>
+            <td class="tda"></td>
+        </tr>
+        <!-- AMF -->
+        <tr>
+            <td class="tda"></td>
+            <td class="tda"></br>{% if "p10" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Attacking MF</td>
+            <td class="tda"></td>
+            <td class="tda">{% if "p9" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Second Striker</td>
+            <td class="tda"></td>
+        </tr>
+        <!-- MF -->
+        <tr>
+            <td class="tda">{% if "p7" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Left Wing</td>
+            <td class="tda"></br></br>{% if "p8" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Intercepting MF</td>
+            <td class="tda"></td>
+            <td class="tda"></br>{% if "p6" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Centre MF</label></td>
+            <td class="tda">{% if "p7" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Right Wing</td>
+        </tr>
+        <!-- Def MF -->
+        <tr>
+            <td class="tda"></td>
+            <td class="tda"></td>
+            <td class="tda">{% if "p5" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %} Defensive MF</td>
+            <td class="tda"></td>
+            <td class="tda"></td>
+        </tr>
+        <!-- 4 Defenders -->
+        <tr>
+            <td class="tda">{% if "p2" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %}Left Wing-Back</td>
+            <td class="tda">{% if "p3" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %}Sweeper</td>
+            <td class="tda"></td>
+            <td class="tda">{% if "p4" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %}</br>Center Back</td>
+            <td class="tda">{% if "p2" in positions %}<input type="checkbox" checked onclick="return false;" onkeydown="return false;">{% endif %}Right Wing-Back></td>
+        </tr>
+        <tr><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td></tr>
+        <tr><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td><td class="tda"></td></tr>
+    </table>
+    </div>
+</div>
+
+
+<div class="card">
+    <h3>Feeback from peers:</h3>
+    <div align="center">
+        {% for f in feedback %}
+        <p class="ps">{{f|linebreaksbr}}</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card">
+    <h3>You have been nominated for:</h3>
+    <div class="row">
+        <ul>
+            {% for n in nominations %}
+            <li>{{n.0}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

@@ -5,12 +5,19 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            window.location.href ="{% url 'playerevals:eval' rid=rid%}";
+        }, 2500);
+    </script>
 </head>
 
-
-<div class="card">
-    <h1>Are you lost?</h1>
-    <div class="colorstrip"></div>
-    </br>
-    <p>This link is dead.</p>
-</div>
+<body>
+    <div class="card">
+        <h1>Thanks</h1>
+        <div class="colorstrip"></div>
+        </br>
+        <p>{{N}} more to go..</p>
+    </div>
+</body>

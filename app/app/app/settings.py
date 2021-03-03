@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
+from .secrets import SECRET_KEY, DB
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,13 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'zq5b!jy!vx@xd-pm+q&h6^v)%(7394*fi6y^=3w#j331gyh%pp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'plpayerevals.herokuapp.com', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'plpayerevals.herokuapp.com', '.herokuapp.com', 'www.thebaywolves.com']
 
 
 # Application definition
@@ -85,15 +84,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'playerevals',
-        'USER': 'peval',
-        'PASSWORD': 'peval',
+        'NAME': DB['NAME'],
+        'USER': DB['USER'],
+        'PASSWORD': DB['PASSWORD'],
         'HOST': 'localhost',
         'PORT': '',
     }

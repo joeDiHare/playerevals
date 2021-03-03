@@ -1,0 +1,50 @@
+{% load static %}
+<head>
+    <meta name="robots" content="noindex" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'playerevals/style.css' %}">
+</head>
+<title>Player Evaluation</title>
+
+
+<form action="{% url 'playerevals:eval' rid=rid %}" method="get">
+{% csrf_token %}
+
+<div class="card">
+
+<h1>Hi {{name}}</h1>
+
+<div class="colorstrip"></div>
+<div>
+    <p>
+        Please follow these instructions:
+        <ul>
+            <li>
+                You will need to review {{N}} players. This might take 20-30 minutes
+            </li>
+            <li>
+                You can break evaluations and continue when you want. Just use the same link.
+            </li>
+            <li>
+                Stefano's ratings from he other captains are provided for you as reference (except when/if you'll be rating him).
+            </li>
+        </ul>
+    </p>
+    <table>
+        <tr>
+            {% for p in status %}
+            <th><input type="checkbox" name="c{{p.0}}" onclick="return false;" onkeydown="return false;" {% if p.1 %}checked{% endif %}/><br>
+                <label for="c{{p.0}}">{{ p.0 }}</label>
+            </th>    
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+</div>
+
+<div class="text-center">
+    <input type="submit" class="smt" value="Start">
+</div>
+</form>
