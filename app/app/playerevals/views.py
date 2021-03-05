@@ -66,6 +66,8 @@ class PlayerView(generic.ListView):
         reviewer_obj = Reviewer.objects.get(code=rid)
         player_obj = Players.objects.get(name=reviewer_obj.name)
         reviews = Review.objects.filter(player=player_obj)
+        if not len(reviews):
+            return
         df_skl = pd.DataFrame([json.loads(r.data)['skills'] for r in reviews])
         df_all_skl = pd.DataFrame([json.loads(r.data)['skills'] for r in Review.objects.all()])
 

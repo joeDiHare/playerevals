@@ -1,19 +1,14 @@
 from django.contrib import admin
 from .models import *
 
-# class ChoiceInline(admin.StackedInline):
-#     model = Choice
-#     extra = 3
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_filter = ['reviewer']
+    list_filter = ['player']
+    search_fields = ['reviewer']
 
-# class QuestionAdmin(admin.ModelAdmin):
-#     fieldsets = [
-#         (None,               {'fields': ['question_text']}),
-#         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
-#     ]
-#     inlines = [ChoiceInline]
-#     list_display = ('question_text', 'pub_date', 'was_published_recently')
-#     search_fields = ['question_text']
-#     list_filter = ['pub_date']
+admin.site.register(Review, ReviewAdmin)
 
-# admin.site.register(Question, QuestionAdmin)
+admin.site.register(Players)
+admin.site.register(Reviewer)
+admin.site.register(Skills)
